@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @NotBlank(message = "Task's description must be not null")
     private String description;
@@ -21,7 +21,7 @@ public class Task {
         return id;
     }
 
-    void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
