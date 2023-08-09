@@ -3,6 +3,8 @@ package io.github.ktokarski2.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -13,6 +15,9 @@ public class Task {
     @NotBlank(message = "Task's description must be not null")
     private String description;
     private boolean done;
+    private LocalDateTime deadline;
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
 
     public Task() {
     }
@@ -37,7 +42,15 @@ public class Task {
         return done;
     }
 
-    void setDone(boolean done) {
+    public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    void setDeadline(final LocalDateTime deadline) {
+        this.deadline = deadline;
     }
 }
