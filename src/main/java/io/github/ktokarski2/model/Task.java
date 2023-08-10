@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tasks")
-public class Task {
+public class Task extends BaseAuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,8 +16,6 @@ public class Task {
     private String description;
     private boolean done;
     private LocalDateTime deadline;
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
 
     public Task() {
     }
@@ -26,7 +24,7 @@ public class Task {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
@@ -53,4 +51,11 @@ public class Task {
     void setDeadline(final LocalDateTime deadline) {
         this.deadline = deadline;
     }
+
+    public void updateFrom(final Task source) {
+        description = source.description;
+        done = source.done;
+        deadline = source.deadline;
+    }
+
 }
